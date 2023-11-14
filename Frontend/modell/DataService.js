@@ -2,20 +2,16 @@
 class DataService {
  
   constructor() {
-
+    axios.default.baseURL = "http://localhost:8000/";
   }
 
   getData(vegpont, callBack){
     axios.get(vegpont)
   .then(function (response) {
     // handle success
-    console.log("resonse",response);
-    console.log("data",response.data);
-    console.log("statusz",response.status);
-    console.log("text",response.statusText);
+    console.log(response.data)
     callBack(response.data);
   })
-
   .catch(function (error) {
     // handle error
     console.log(error);

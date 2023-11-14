@@ -5,18 +5,16 @@ class DataController {
   constructor() {
 
     this.dataService = new DataService();
-    this.adatok =this.dataService.getData("http://localhost:8000/writers");
-    const urlapView = new UrlapView($(".urlap"),this.adatok);
-    const tablaView = new TablaView($(".lista"), this.dataService.getData("http://localhost:8000/writers"));
-    this.dataService.getData("http://localhost:8000/writers", this.megjelenit);
-    this.dataService.postData("http://localhost:8000/writers",{
+    this.dataService.getData("api/writers", this.megjelenit);
+
+    this.dataService.postData("api/writers",{
       "nev": "Vilson",
       "szulEv": 1881,
     });
   }
 
   megjelenit(lista) {
-    console.log(lista);
+    new TablaView($(".tablazat"),lista)
   }
 
 }

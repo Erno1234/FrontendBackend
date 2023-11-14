@@ -4,6 +4,7 @@ class TablaView{
     constructor(szuloElem,lista){
         this.szuloElem = szuloElem;
         this.#lista = lista;
+        console.log(this.#lista)
         this.tablaMegjelenit();
         console.log(this.#lista);
     }

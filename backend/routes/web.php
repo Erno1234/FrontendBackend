@@ -18,5 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/writers', [WriterController::class, 'index']);
-Route::post('/writers', [WriterController::class, 'store']);
+
