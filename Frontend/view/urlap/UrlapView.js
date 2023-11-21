@@ -9,6 +9,7 @@ class UrlapView {
   constructor(szuloElem, leiro) {
     this.szuloElem = szuloElem;
     this.#leiro = leiro;
+    console.log(this.#leiro);
     this.szuloElem.append("<form>")
     this.formElem = this.szuloElem.children("form");
     this.#urlapOsszerak();

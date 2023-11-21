@@ -15,7 +15,6 @@ class TablaView{
         this.tableElem=this.szuloElem.children("table");
         for (const key in this.#lista) {
             new TablaSorView(this.#lista[key], this.tableElem);
-            console.log(this.#lista[key])
         }
       
       

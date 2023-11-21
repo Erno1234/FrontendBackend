@@ -2,25 +2,30 @@ class TablaSorView{
     #obj=[]
     constructor(obj, szuloElem){
         this.#obj = obj;
-        console.log(this.#obj);
         this.tablaElem = szuloElem;
-        console.log(szuloElem)
         this.#sorLetrehoz();
+        this.sorElem = this.elem.children("tr:last-child");
+        this.torlesGomb = this.sorElem.children("td").children(".delete");
+        /*this.torlesGomb.on("click",()=>{
+            this.#esemenyLetrehozas("delete");
+        })*/
     }
 
     #sorLetrehoz(){
         let txt = "<tr>";
         for (const key in this.#obj) {
-            console.log(this.#obj[key])
              txt += `<td>${this.#obj[key]}</td>`
         }
-        txt += `<td><span class="kesz">✅👌</span><span class="megse">❌</span><span class="kuka">🗑</span>`;
+        txt += `<td><span class="kesz">✅</span><span class="edit">✂</span><span class="delete">🗑</span>`;
         txt += `</tr>`;
-        console.log(txt)
         this.tablaElem.append(txt);
     
 
     }
+    #esemenyLetrehozas(esemenyneve) {
+        const esemenyem = new CustomEvent(esemenyneve, { detail: this.#obj });
+        window.dispatchEvent(esemenyem);
+      }
 
 }
 export default TablaSorView

@@ -2,14 +2,13 @@
 class DataService {
  
   constructor() {
-    axios.default.baseURL = "http://localhost:8000/";
+    axios.defaults.baseURL = "http://localhost:8000/";
   }
 
   getData(vegpont, callBack){
     axios.get(vegpont)
   .then(function (response) {
     // handle success
-    console.log(response.data)
     callBack(response.data);
   })
   .catch(function (error) {
@@ -29,6 +28,17 @@ class DataService {
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  deleteData(vegpont,id){
+    axios.delete(vegpont+'/'+id)
+    .then(function(response){
+      location.reload();
+      console.log("resp",response);
+    })
+    .catch((error)=>{
+      console.log("hiba",error);
+    })
   }
 
 }
