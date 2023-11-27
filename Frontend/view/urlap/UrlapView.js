@@ -9,24 +9,31 @@ class UrlapView {
   constructor(szuloElem, leiro) {
     this.szuloElem = szuloElem;
     this.#leiro = leiro;
-    console.log(this.#leiro);
+
     this.szuloElem.append("<form>")
     this.formElem = this.szuloElem.children("form");
+    
     this.#urlapOsszerak();
     this.submitElem=$("#submit")
+
     this.submitElem.on("click",()=>{
       event.preventDefault();
       this.#osszesElemValidE= true;
+
       this.#urlapElemLista.forEach(elem=>{
         console.log(elem);
         console.log(elem.valid);
-        this.#osszesElemValidE=this.#osszesElemValidE && elem.valid
+        this.#osszesElemValidE=this.#osszesElemValidE && elem.valid;
       })
+    
       if(this.#osszesElemValidE){
         console.log("Valid az űrlap")
         this.#urlapElemLista.forEach(elem =>{
           this.#urlapAdat[elem.key]=elem.value
+          this.#esemenyLetrehozas("post");
         })
+        console.log(this.#urlapAdat)     
+        
       }else{
         console.log("Nem valid az űrlap")
       }
@@ -56,7 +63,7 @@ class UrlapView {
  
 
   #esemenyLetrehozas(esemenynev) {
-    const esemenyem = new CustomEvent(esemenynev, {detail:this});
+    const esemenyem = new CustomEvent(esemenynev, {detail:this.#urlapAdat});
     window.dispatchEvent(esemenyem);
   }
   get urlapAdat(){

@@ -1,12 +1,10 @@
-import TablaSorView from "./TablaSorView.js";
-class TablaView{
+import PublicTablaSorView from "./PublicTablaSorView.js";
+class PublicTablaView{
     #lista
     constructor(szuloElem,lista){
         this.szuloElem = szuloElem;
         this.#lista = lista;
-        console.log(this.#lista)
         this.tablaMegjelenit();
-        console.log(this.#lista);
     }
 
     tablaMegjelenit(){
@@ -14,9 +12,17 @@ class TablaView{
         this.szuloElem.append(txt);
         this.tableElem=this.szuloElem.children("table");
         for (const key in this.#lista) {
-            new TablaSorView(this.#lista[key], this.tableElem);
+            new PublicTablaSorView(this.#lista[key], this.tableElem);
         }
     }
 
+    kosarTartalma(lista){
+        let txt = `<ul>`;
+        for (let index = 0; index < lista.length; index++) {
+            `<li>${lista[index]}</li>`;
+        }
+        `</ul>`;
+    }
+
 }
-export default TablaView
+export default PublicTablaView

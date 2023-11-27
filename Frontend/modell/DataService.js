@@ -8,15 +8,12 @@ class DataService {
   getData(vegpont, callBack){
     axios.get(vegpont)
   .then(function (response) {
-    // handle success
     callBack(response.data);
   })
   .catch(function (error) {
-    // handle error
     console.log(error);
   })
   .finally(function () {
-    // always executed
   });
   }
 
@@ -30,16 +27,28 @@ class DataService {
     });
   }
 
+  updateData(vegpont,id,obj){
+    axios.put(vegpont +'/'+ id,obj)
+    .then(function(response){
+      location.reload();
+      console.log(response);
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
+
   deleteData(vegpont,id){
     axios.delete(vegpont+'/'+id)
     .then(function(response){
       location.reload();
-      console.log("resp",response);
+      console.log(response);
     })
     .catch((error)=>{
-      console.log("hiba",error);
+      console.log(error);
     })
   }
+
 
 }
 export default DataService;
